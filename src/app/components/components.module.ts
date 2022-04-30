@@ -4,6 +4,7 @@ import { DetailComponent } from './detail/detail.component';
 import { CardsComponent } from './cards/cards.component';
 import { PipesModule } from '../pipes/pipes.module';
 import { IonicModule } from '@ionic/angular';
+import { MapComponent } from './map/map.component';
 
 
 
@@ -11,9 +12,11 @@ import { IonicModule } from '@ionic/angular';
 @NgModule({
   entryComponents:[DetailComponent],
   declarations: [DetailComponent,
-  CardsComponent],
+    CardsComponent,
+  MapComponent],
   exports:[DetailComponent,
-  CardsComponent],
+    CardsComponent,
+    MapComponent],
   imports: [
     CommonModule,
     PipesModule,

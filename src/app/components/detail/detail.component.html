@@ -1,8 +1,28 @@
-<ion-header [translucent]="true">
-    <ion-toolbar>
-        <ion-item >
-            <ion-title>Ubicación del problema</ion-title>
-            <ion-icon slot="start" color="primary" name="arrow-back-outline" (click)="cerrar()"></ion-icon>
-        </ion-item>
-    </ion-toolbar>
+<ion-header [translucent]="true" mode="ios" >
+    <ion-toolbar >
+        <ion-title>Ubicación del problema</ion-title>
+<ion-buttons slot="start">
+    <ion-button (click)="cerrar()">
+        <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+    </ion-button>
+</ion-buttons>    </ion-toolbar>
 </ion-header>
+
+<ion-content>
+    <ion-card>
+        <ion-card-content class="container">
+            <ion-item>
+                <ion-label position="floating" >ubicación actual</ion-label>
+                <ion-input type="text"></ion-input>
+            </ion-item>        
+        </ion-card-content>
+    </ion-card>
+    <ion-card>
+        <ion-card-content class="container">
+            <ion-item>
+                <ion-label position="floating">Referencia en la via</ion-label>
+                <ion-input type="text"></ion-input>
+            </ion-item>        
+        </ion-card-content>
+    </ion-card>
+</ion-content>

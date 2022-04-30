@@ -23,6 +23,5 @@ export class CardsComponent implements OnInit {
       }
    });
     modal.present();
-    console.log(tipo);
   }
 }
