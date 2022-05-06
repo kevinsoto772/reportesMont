@@ -1,28 +1,51 @@
-<ion-header [translucent]="true" mode="ios" >
-    <ion-toolbar >
+<ion-header [translucent]="true" mode="ios">
+    <ion-toolbar>
         <ion-title>Ubicación del problema</ion-title>
-<ion-buttons slot="start">
-    <ion-button (click)="cerrar()">
-        <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
-    </ion-button>
-</ion-buttons>    </ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)="cerrar()">
+                <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ion-card>
+    <ion-card mode="md">
         <ion-card-content class="container">
             <ion-item>
-                <ion-label position="floating" >ubicación actual</ion-label>
-                <ion-input type="text"></ion-input>
-            </ion-item>        
+                <ion-label position="floating">ubicación actual</ion-label>
+                <ion-input type="text" ></ion-input>
+            </ion-item>
         </ion-card-content>
     </ion-card>
-    <ion-card>
+
+    <ion-card mode="md">
         <ion-card-content class="container">
             <ion-item>
                 <ion-label position="floating">Referencia en la via</ion-label>
                 <ion-input type="text"></ion-input>
-            </ion-item>        
+            </ion-item>
         </ion-card-content>
     </ion-card>
+
+    <app-map></app-map>
+
+    <div>
+        <ion-grid fixed>
+            <ion-row>
+                <ion-col size="4" sizeLg="2"*ngFor="let photo of photoservice.photos; index as position"> 
+                    <ion-img [src]="photo.webviewPath"></ion-img>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-button class="button" id="camera" shape="round" fill="outline" (click)="addnewToGallery()">
+            <ion-icon slot="icon-only" name="camera-outline"></ion-icon>
+        </ion-button>
+
+        <ion-button id="galery" class="button" shape="round" fill="outline">
+            <ion-icon slot="icon-only" name="image-outline"></ion-icon>
+        </ion-button>
+    </div>
+
+    <ion-button id="continue" shape="round" (click)="continue()"> Continuar </ion-button>
 </ion-content>

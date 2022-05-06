@@ -10,3 +10,23 @@ export interface Reportes {
   descripcion: String;
   urlImage: string;
 }
+
+export interface Markers{
+  position: {
+    lat: number;
+    lng: number
+  };
+  title: string;
+}
+
+export interface CoorInfo {
+  country: string;
+  city: string;
+  marker: Markers;
+}
+
+export interface photo {
+  filepath: string;
+  webviewPath: string;
+}
+

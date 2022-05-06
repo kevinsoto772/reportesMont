@@ -1,6 +1,6 @@
-ion-title{
-    width:100;
-    font-size:15px;
+ion-title {
+    width: 100;
+    font-size: 15px;
 }
 
 ion-card {
@@ -11,10 +11,10 @@ ion-card {
     height: 50px;
 }
 
-.container{
+.container {
     margin: 0% auto;
     padding: 0%;
-    width:100%;
+    width: 100%;
 }
 
 ion-card-content ion-item {
@@ -22,6 +22,50 @@ ion-card-content ion-item {
     padding: 0%;
 }
 
-ion-card-content ion-item ion-label{
-    color:rgb(74, 74, 74);
+ion-card-content ion-item ion-label {
+    color: rgb(74, 74, 74);
+}
+
+.button {
+    width:100px;
+}
+
+#camera {
+    margin: 0px auto;
+    float: left;
+    margin-left: 20px;
+}
+
+#galery {
+    margin: 0px auto;
+    float: right;
+    margin-right: 20px;
+}
+
+#continue{
+    margin: 0px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:250px;
+    margin-top:80px !important;
+}
+
+.chip{
+    position: fixed;
+
+}
+
+@media (min-width: 771px) {
+    
+     #continue{
+        margin: 0px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width:250px;
+        margin-top:60px !important;
+        margin-bottom:30px !important;
+    }
+
 }
