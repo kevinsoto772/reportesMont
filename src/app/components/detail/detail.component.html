@@ -33,7 +33,10 @@
     <div>
         <ion-grid fixed>
             <ion-row>
-                <ion-col size="4" sizeLg="2"*ngFor="let photo of photoservice.photos; index as position"> 
+                <ion-col size="4" sizeLg="2"*ngFor="let photo of photoservice.photos; index as position" class="wrapped-image"> 
+                    <ion-button class="foto" color="light" fill="clear" (click)="deletePicture(photo, position)">
+                        <ion-icon slot="icon-only" name="close-circle"></ion-icon>
+                    </ion-button>
                     <ion-img [src]="photo.webviewPath"></ion-img>
                 </ion-col>
             </ion-row>
@@ -42,7 +45,7 @@
             <ion-icon slot="icon-only" name="camera-outline"></ion-icon>
         </ion-button>
 
-        <ion-button id="galery" class="button" shape="round" fill="outline">
+        <ion-button id="galery" class="button" shape="round" fill="outline" (click)=" SearchInGallery()">
             <ion-icon slot="icon-only" name="image-outline"></ion-icon>
         </ion-button>
     </div>

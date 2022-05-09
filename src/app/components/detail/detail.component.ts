@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { PhotoService } from 'src/app/services/photo.service';
 import { FormPart2Component } from '../form-part2/form-part2.component';
-
+import { photo } from 'src/app/interfaces/interfaces'; 
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
@@ -13,8 +13,9 @@ export class DetailComponent implements OnInit {
 
 
   constructor(private modalCtrl: ModalController, public photoservice: PhotoService) { }
-
-  ngOnInit() { }
+  
+  ngOnInit() { 
+  }
 
   cerrar() {
     this.modalCtrl.dismiss();
@@ -33,5 +34,13 @@ export class DetailComponent implements OnInit {
   addnewToGallery(){
     this.photoservice.addnewToGallery();
   }
+  
+  SearchInGallery() {
+    this.photoservice.openGallery();
+  }
 
+  deletePicture(photo: photo, position: number) {
+    this.photoservice.deletePicture(photo, position);
+    console.log(position, photo);
+  }
 }

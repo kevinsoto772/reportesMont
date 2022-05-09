@@ -30,3 +30,8 @@ export interface photo {
   webviewPath: string;
 }
 
+export interface GalleryPhotos{
+  path?: string;
+  webPath: string;
+}
+
