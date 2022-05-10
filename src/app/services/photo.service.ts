@@ -119,8 +119,13 @@ export class PhotoService {
       quality: 100,
       correctOrientation: true,
     });
-    console.log(photoGallery);
+
+    this.GalleryPhotos = photoGallery.photos
+    console.log(photoGallery,'galeria xd',this.GalleryPhotos);
+    
   }
+
+
 
   public async deletePicture(photo: photo, position: number) {
     // Remove this photo from the Photos reference data array
