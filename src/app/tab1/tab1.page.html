@@ -1,4 +1,4 @@
-<ion-header [translucent]="true" mode="ios">
+<ion-header mode="ios">
   <ion-toolbar>
     <ion-title>
       Reportes Mont
@@ -6,6 +6,12 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense" mode="ios" class="ion-no-border">
+    <ion-toolbar>
+      <ion-title size="large" style="text-align:center;">Reportes Mont</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
 <app-cards></app-cards>
 </ion-content>

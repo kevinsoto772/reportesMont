@@ -1,0 +1,90 @@
+ion-title {
+    width: 100;
+    font-size: 15px;
+}
+
+.container {
+    margin: 0% auto;
+    padding: 0%;
+    width: 80%;
+    height: 6% !important;
+    margin-top: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px #ccc;
+}
+
+ion-item ion-label {
+    color: rgb(74, 74, 74);
+}
+
+.button {
+    width: 100px;
+}
+
+#camera {
+    margin: 0px auto;
+    float: left;
+    margin-left: 20px;
+}
+
+#galery {
+    margin: 0px auto;
+    float: right;
+    margin-right: 20px;
+}
+
+#continue {
+    margin: 0px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    margin-top: 80px !important;
+    margin-bottom: 30px !important;
+}
+
+.wrapped-image {
+    position: relative;
+    float: left;
+    margin: 10px;
+
+}
+
+.wrapped-image .foto {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    width: 60px;
+    height: 22px;
+    padding-left: 15px;
+}
+
+#myPosition {
+    background-color: rgb(255, 243, 21);
+    position: absolute;
+    top: 40%;
+    left: 66%;
+}
+
+#myPosition:hover{
+    background-color: rgb(255, 243, 21);
+}
+
+#myPosition:hover:active{
+    background-color: rgba(255, 243, 21, 0.79);
+
+}
+
+
+@media (min-width: 771px) {
+
+    #continue {
+        margin: 0px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 250px;
+        margin-top: 60px !important;
+        margin-bottom: 30px !important;
+    }
+}

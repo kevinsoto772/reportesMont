@@ -30,9 +30,13 @@ ion-img {
     text-align: center;
 }
 
-/*Responsive*/
 
-/*desde la anchura 0px a la anchura 888px de pantalla se ejecutaran estos estilos*/
+ion-card:active {
+    transform: scale(0.98);
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
+
+
 @media (min-width: 1283px) {
 
     ion-grid{

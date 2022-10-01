@@ -1,0 +1,35 @@
+<ion-header [translucent]="true" mode="ios">
+    <ion-toolbar>
+        <ion-title>Datos del problema</ion-title>
+        <ion-buttons slot="start">
+            <ion-button (click)="cerrar()">
+                <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    
+<form  #formulario="ngForm" (ngSubmit)="onSubmit(formulario)">
+
+    <div class="container">
+        <ion-item id="input1">
+            <ion-label position="floating">Descripción</ion-label>
+            <ion-input [(ngModel)]="reporte.descripcion" name="descripcion"  required></ion-input>
+        </ion-item>        
+    </div>
+
+    <div class="container">
+        <ion-item id="input2">
+            <ion-label position="floating">Correo electronico</ion-label>
+            <ion-input  type="email" placeholder="Email" [(ngModel)]="reporte.correo" name="email"  required
+            pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"></ion-input>
+        </ion-item>
+    </div>
+
+    <ion-button id="enviar" shape="round" type="submit" [disabled]="formulario.invalid" (click)="SendReport()">
+        Enviar reporte
+    </ion-button>
+</form>
+</ion-content>

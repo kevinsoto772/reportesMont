@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { DetailComponent } from '../detail/detail.component';
+import { DetailComponent } from '../../tab1/detail/detail.component';
+
 
 @Component({
   selector: 'app-cards',

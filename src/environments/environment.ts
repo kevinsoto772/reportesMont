@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apikeyGooglemaps: ''
+  apikeyGooglemaps: 'AIzaSyCVEO5RkscKEQ3EAT4diOxCRWfm9fCOBQk',
+  apiUrl: 'http://localhost:3000'
 };
 
 /*

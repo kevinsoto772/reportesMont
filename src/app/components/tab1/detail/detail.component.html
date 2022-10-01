@@ -1,0 +1,64 @@
+<ion-header [translucent]="true" mode="ios">
+    <ion-toolbar>
+        <ion-title>Ubicación del problema</ion-title>
+        <ion-buttons slot="start">
+            <ion-button (click)="cerrar()">
+                <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form  #formulario="ngForm" (ngSubmit)="onSubmit(formulario)">
+    <div class="container">
+        <ion-item>
+            <ion-label position="floating">ubicación actual</ion-label>
+            <ion-input type="text" name="direccion"[(ngModel)]="reporte.direccion" [disabled]="reporte.direccion == '' " readonly required></ion-input>
+        </ion-item>
+    </div>
+        <div class="container">
+        <ion-item>
+            <ion-label position="floating">Referencia en la via</ion-label>
+            <ion-input type="text" name="referencia" [(ngModel)]="reporte.referencia" ></ion-input>
+        </ion-item>
+    </div>
+</form>
+
+    <app-map [fathertab]="tabName" [position] = 'position' ></app-map>
+
+            
+    <ion-chip mode="ios" id="myPosition" [outline]="true" (click)="Mygeolocation()">
+        <label> mi ubicación</label>
+        <ion-icon  name="locate" color="dark"></ion-icon>
+    </ion-chip>
+
+    <div>
+        <ion-grid fixed *ngFor="let photo of photoservice.photos; index as position">
+            <ion-row >
+                <ion-col size="4" sizeLg="2" class="wrapped-image"> 
+                    <ion-button class="foto" color="danger" fill="clear" (click)="deletePicture(photo, position)">
+                        <ion-icon slot="icon-only" name="close-circle"></ion-icon>
+                    </ion-button>
+                    <ion-img [src]="photo.webPath"></ion-img>
+
+                            
+        <ion-button  class="button" (click)="postimage(photo)">
+            <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+        </ion-button>
+                </ion-col>
+            </ion-row>
+
+        </ion-grid>
+        <ion-button class="button" id="camera" shape="round" fill="outline" (click)="addnewToGallery()">
+            <ion-icon slot="icon-only" name="camera-outline"></ion-icon>
+        </ion-button>
+
+        <ion-button id="galery" class="button" shape="round" fill="outline" (click)=" SearchInGallery()">
+            <ion-icon slot="icon-only" name="image-outline"></ion-icon>
+        </ion-button>
+    </div>
+
+    <ion-button id="continue" shape="round" (click)="continue()" [disabled]="formulario.invalid" type="submit"> Continuar </ion-button>
+
+</ion-content>
