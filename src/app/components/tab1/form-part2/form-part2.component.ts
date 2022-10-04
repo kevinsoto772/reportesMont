@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component,Input, OnInit} from '@angular/core';
 import { AlertController, ModalController, ToastController } from '@ionic/angular';
 import { NgForm } from '@angular/forms';
 import { ReportsService } from '../../../services/reports.service';
+import { PhotoService } from 'src/app/services/photo.service';
 
 @Component({
   selector: 'app-form-part2',
@@ -9,14 +10,15 @@ import { ReportsService } from '../../../services/reports.service';
   styleUrls: ['./form-part2.component.scss'],
 })
 export class FormPart2Component implements OnInit {
-  @Input() reportes;
+  @Input() reports;
 
-  reporte = {
-    correo: '',
-    descripcion: '',
-    urlImage: ''
+  report = {
+    email: '',
+    description: '',
+    user_document: '',
+    Image: ''
   };
-  constructor(private modalCtrl: ModalController, private reportService: ReportsService, private alertCtrl: AlertController, private toastCtrl: ToastController ) { }
+  constructor(private modalCtrl: ModalController, private reportService: ReportsService, private alertCtrl: AlertController, private toastCtrl: ToastController, public photoservice: PhotoService ) { }
 
   ngOnInit() { }
   
@@ -39,7 +41,7 @@ export class FormPart2Component implements OnInit {
           role: 'confirm',
           handler: () => {
             const mensaje = 'Reporte enviado'
-            this.reportService.postReports(JSON.stringify(this.reporte));
+            this.reportService.postReports(this.report);
             this.modalCtrl.dismiss(true);
             this.presentToast(mensaje);
           },
@@ -50,7 +52,7 @@ export class FormPart2Component implements OnInit {
     await alert.present();
   }
 
-  onSubmit(formulario: NgForm) {    
+  onSubmit(formulario: NgForm) {  
   }
 
   async presentToast(mesaje: string) {

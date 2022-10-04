@@ -7,6 +7,8 @@ import { LoadingController, Platform } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 
 const IMAGE_DIR = 'stored-images';
+
+
 let photo: photo;
 @Injectable({
   providedIn: 'root'
@@ -18,54 +20,9 @@ export class PhotoService {
 
   private PHOTO_STORAGE: string = "fotos";
 
-  constructor(private platform: Platform, private http: HttpClient, private loadingCtrl: LoadingController) { }
-
-  async loadFiles() {
-    this.images = [];
-
-    const loading = await this.loadingCtrl.create({
-      message: 'Loading data...',
-    });
-    await loading.present();
-
-    Filesystem.readdir({
-      directory: Directory.Data,
-      path: IMAGE_DIR
-    }).then(result => {
-
-      console.log('HERE: ', result);
-      this.loadFileData(result.files);
-
-    }, async err => {
-      console.log('err: ', err)
-      await Filesystem.mkdir({
-        directory: Directory.Data,
-        path: IMAGE_DIR
-      });
-    }).then(_ => {
-      loading.dismiss();
-    })
-
-  }
-
-  async loadFileData(filenames: string[]) {
-    for (let f of filenames) {
-      const filePath = `${IMAGE_DIR}/${f}`;
-
-      const readFile = await Filesystem.readFile({
-        directory: Directory.Data,
-        path: filePath
-      });
-
-      this.images.push({
-        name: f,
-        path: filePath,
-        data: `data:image/jpeg;base64,${readFile.data}`
-      })
-      console.log('READ: ', readFile);
+  constructor(private platform: Platform, private http: HttpClient, private loadingCtrl: LoadingController) {
     }
 
-  }
 
   public async addnewToGallery() {
     //proceso para tomar una foto
@@ -158,8 +115,8 @@ export class PhotoService {
   }
 
   public async deletePicture(photo: photo, position: number) {
-    
-    if (this.photos != []) {
+    const photos: any = []
+    if (this.photos != photos) {
       this.photos.splice(position, 1);
 
       Storage.set({
@@ -179,36 +136,21 @@ export class PhotoService {
     }
   }
 
-  public async startUpload(file: photo) {
+  public async setPhotos(formdata: FormData): Promise<FormData>{
     
-    const base64Data = await this.readAsBase64(file);
-    const formData = new FormData();
+    const photosString = await Storage.get({ key: this.PHOTO_STORAGE });
+    const photos: photo[] = JSON.parse(photosString.value);
+    console.log(photos)
 
-    formData.append('file', 'zzzz');
-    let data = { 'file': base64Data };
-    let dataJson= JSON.stringify(data);
-    this.uploadData(dataJson);
-    console.log(dataJson)
+    for (let photo of photos) {
+      let response = await fetch(photo.webPath!)
+      let blob = await response.blob();
+      
+    formdata.append('images[]', blob)
 
-
-  }
-
-  async uploadData(formdata: string) {
-    // FormData
-    const url = 'http://localhost:3000/imagenes';
- 
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: formdata,
     }
-    );
 
-    // this.http.post(url, formdata).subscribe(res => {
-    //   console.log(res);
-    // })
+    return formdata;
   }
 
 

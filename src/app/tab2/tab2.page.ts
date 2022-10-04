@@ -21,6 +21,10 @@ export class Tab2Page implements OnInit{
     this.reportsService.getTopHeadlinesByTypes(this.selectedTypes).subscribe(reports => {
     this.reports = [...this.reports, ...reports]
     })
+
+    this.reportsService.getReports().subscribe(reports => {
+      console.log(reports);
+    })
     
   }
 

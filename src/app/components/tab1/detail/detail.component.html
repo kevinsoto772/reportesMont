@@ -14,13 +14,13 @@
     <div class="container">
         <ion-item>
             <ion-label position="floating">ubicación actual</ion-label>
-            <ion-input type="text" name="direccion"[(ngModel)]="reporte.direccion" [disabled]="reporte.direccion == '' " readonly required></ion-input>
+            <ion-input type="text" name="direccion"[(ngModel)]="report.address" [disabled]="report.address == '' " readonly required></ion-input>
         </ion-item>
     </div>
         <div class="container">
         <ion-item>
             <ion-label position="floating">Referencia en la via</ion-label>
-            <ion-input type="text" name="referencia" [(ngModel)]="reporte.referencia" ></ion-input>
+            <ion-input type="text" name="referencia" [(ngModel)]="report.reference" ></ion-input>
         </ion-item>
     </div>
 </form>
@@ -32,7 +32,7 @@
         <label> mi ubicación</label>
         <ion-icon  name="locate" color="dark"></ion-icon>
     </ion-chip>
-
+<br/>
     <div>
         <ion-grid fixed *ngFor="let photo of photoservice.photos; index as position">
             <ion-row >
@@ -41,15 +41,10 @@
                         <ion-icon slot="icon-only" name="close-circle"></ion-icon>
                     </ion-button>
                     <ion-img [src]="photo.webPath"></ion-img>
-
-                            
-        <ion-button  class="button" (click)="postimage(photo)">
-            <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
-        </ion-button>
                 </ion-col>
             </ion-row>
-
         </ion-grid>
+
         <ion-button class="button" id="camera" shape="round" fill="outline" (click)="addnewToGallery()">
             <ion-icon slot="icon-only" name="camera-outline"></ion-icon>
         </ion-button>

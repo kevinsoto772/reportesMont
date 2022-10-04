@@ -5,9 +5,22 @@ export interface NewsResponse {
   totalResults: number;
   reports: Reportes[]
 }
+export interface Reports {
+  id: number;
+  type: string;
+  user_document
+  address: string;
+  reference: string,
+  email: EmailValidator;
+  latitude: number;
+  longitude: number;
+  description: string;
+  Images:Text;
+}
+
 export interface Reportes {
   id: number;
-  tipo: string;
+  tipo: number;
   direccion: string;
   referencia: string,
   correo: EmailValidator;
