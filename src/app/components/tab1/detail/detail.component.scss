@@ -1,7 +1,13 @@
+
 ion-title {
     width: 100;
     font-size: 15px;
 }
+
+hr {
+    height: 10px;
+    background-color: black;
+  }
 
 .container {
     margin: 0% auto;
@@ -19,6 +25,7 @@ ion-item ion-label {
 
 .button {
     width: 100px;
+    ;
 }
 
 #camera {
@@ -39,10 +46,23 @@ ion-item ion-label {
     align-items: center;
     justify-content: center;
     width: 250px;
-    margin-top: 80px !important;
-    margin-bottom: 30px !important;
+    margin-top: 25px !important;
+    color: white;
 }
 
+#label1{
+    font-size:15px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    text-align:center;
+    margin-left: 10px;
+}
+
+#label2{
+    font-size:15px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    text-align:center; 
+    margin-left:45px;
+}
 
 .wrapped-image {
     position: relative;

@@ -3,32 +3,23 @@ import { EmailValidator } from "@angular/forms";
 export interface NewsResponse {
   status:       string;
   totalResults: number;
-  reports: Reportes[]
+  reports: Report[]
 }
-export interface Reports {
+export interface Report {
   id: number;
-  type: string;
-  user_document
+  type: number;
+  user_document: string;
   address: string;
   reference: string,
   email: EmailValidator;
   latitude: number;
   longitude: number;
   description: string;
-  Images:Text;
+  images: Text;
+  follows: number;
+  attended: boolean;
 }
 
-export interface Reportes {
-  id: number;
-  tipo: number;
-  direccion: string;
-  referencia: string,
-  correo: EmailValidator;
-  latitud: number;
-  longitud: number;
-  descripcion: string;
-  urlImage: string;
-}
 export interface photo {
   path?: string;
   webPath?: string;
@@ -37,13 +28,6 @@ export interface LocalFile{
   name: string,
   path: string,
   data: string
-}
-
-export interface ReportByTypeAndPage{
-  [key: string]: {
-    page: number,
-    reports: Reportes[]
-  }
 }
 
 

@@ -1,29 +1,26 @@
-<ion-card>
-  <ion-card-subtitle class="ion-margin">
+<ion-card mode="md" id="principal_card">
+  <ion-card-content id="principal_card_content" >
+        <ion-grid fixed>
+          <ion-row>
+            <ion-col size="6">
+              <span class="text-primary">{{ index + 1 }}. </span>
+              <label id="address">{{ report.address }}</label>
+            </ion-col>
+            <ion-col align="right" size-lg="6" size-md="6" size-xs="6">
+              <ion-button (click)="onOpenMenu()"fill="clear" color="danger">
+                <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>            
 
-    <ion-row class="ion-align-items-center">
-
-      <ion-col class="ion-margin">
-        <span class="text-primary">{{ index + 1 }}. </span>
-        <span class="report-source">{{ report.tipo }}</span>
+    <ion-grid fixed *ngIf="report.description" (click)="OpenReport(report.id)">
+      <ion-row>
+        <ion-col size="4">
+            <ion-img *ngIf="report.images" [src]="report.images[0].toString()" id="image"></ion-img>
       </ion-col>
-
-      <ion-col align="right"> 
-        <ion-button (click)="onOpenMenu()"fill="clear">
-          <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
-        </ion-button>
-      </ion-col>
-
-    </ion-row>    
-  </ion-card-subtitle>
-
-  <ion-card-title class="ion-padding-horizontal ion-margin-bottom" (click)="OpenReport(report.id)">
-    {{ report.direccion }}
-  </ion-card-title>
-
-  <ion-img *ngIf="report.urlImage" [src]="report.urlImage | image"  (click)="OpenReport(report.id)"> </ion-img>
-
-  <ion-card-content *ngIf="report.descripcion" (click)="OpenReport(report.id)">
-    <p>{{ report.descripcion }}</p>
+        <ion-col><p>{{ report.description }}</p></ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-card-content>
 </ion-card>

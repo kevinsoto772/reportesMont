@@ -2,7 +2,7 @@
     <ion-toolbar>
         <ion-title>Datos del problema</ion-title>
         <ion-buttons slot="start">
-            <ion-button (click)="cerrar()">
+            <ion-button (click)="cerrar()" color="red">
                 <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
             </ion-button>
         </ion-buttons>
@@ -35,7 +35,7 @@
         </ion-item>
     </div>
 
-    <ion-button id="enviar" shape="round" type="submit" [disabled]="formulario.invalid" (click)="SendReport()">
+    <ion-button id="enviar" shape="round" type="submit" [disabled]="formulario.invalid" (click)="SendReport()" color="yellow">
         Enviar reporte
     </ion-button>
 </form>

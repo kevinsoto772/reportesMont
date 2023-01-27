@@ -1,0 +1,32 @@
+<ion-header  mode="ios" class="header" collapse="fade">
+  <ion-toolbar>
+    <ion-title class="title">Buscar reportes </ion-title>
+  </ion-toolbar>
+  <ng-container *ngIf="Types.length > 0" >  
+    <ion-segment
+      [value]="selectedTypes"
+      (ionChange)="segmentChanged($event)"
+      scrollable
+      mode="md" id="select-types" color="dark">
+      <ion-segment-button *ngFor="let type of Types" [value]="type.id">
+        <ion-label class="ion-text-capitalize" id="types">{{type.type}}</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ng-container>
+</ion-header>
+
+<ion-content class="tabsContent">
+<ion-list id="filter">
+  <ion-item  lines="none">
+    <ion-icon slot="start" name="filter-outline" color="dark"></ion-icon>
+    <ion-select placeholder="Filtrar">
+      <ion-select-option value="apples" >Todos los reportes</ion-select-option>
+      <ion-select-option value="oranges">Reportes cercanos</ion-select-option>
+      <ion-select-option value="bananas">Reportes populares</ion-select-option>
+    </ion-select>
+  </ion-item>
+</ion-list>
+
+<app-reports [reports]="reports"></app-reports>
+
+</ion-content>

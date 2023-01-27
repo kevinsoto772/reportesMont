@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Camera, CameraResultType, CameraSource, Photo, GalleryPhoto } from '@capacitor/camera';
 import { Filesystem, Directory } from '@capacitor/filesystem';
-import { Storage } from '@capacitor/storage';
+import { Preferences } from '@capacitor/preferences';
 import { photo, LocalFile } from '../interfaces/interfaces';
 import { LoadingController, Platform } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
@@ -34,7 +34,7 @@ export class PhotoService {
 
     const savedImageFile = await this.savePicture(photoCaptured);
     this.photos.unshift(savedImageFile);
-    Storage.set({
+    Preferences.set({
       key: this.PHOTO_STORAGE,
       value: JSON.stringify(this.photos)
     })
@@ -106,7 +106,7 @@ export class PhotoService {
 
       const data = await this.savePicture(photo);
       this.photos.unshift(data);
-      Storage.set({
+      Preferences.set({
         key: this.PHOTO_STORAGE,
         value: JSON.stringify(this.photos)
       })
@@ -119,7 +119,7 @@ export class PhotoService {
     if (this.photos != photos) {
       this.photos.splice(position, 1);
 
-      Storage.set({
+      Preferences.set({
         key: this.PHOTO_STORAGE,
         value: JSON.stringify(this.photos),
       });
@@ -138,7 +138,7 @@ export class PhotoService {
 
   public async setPhotos(formdata: FormData): Promise<FormData>{
     
-    const photosString = await Storage.get({ key: this.PHOTO_STORAGE });
+    const photosString = await Preferences.get({ key: this.PHOTO_STORAGE });
     const photos: photo[] = JSON.parse(photosString.value);
     console.log(photos)
 

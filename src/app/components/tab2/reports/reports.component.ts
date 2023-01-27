@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Reportes } from '../../../interfaces/interfaces';
+import { Report } from '../../../interfaces/interfaces';
 
 @Component({
   selector: 'app-reports',
@@ -8,9 +8,17 @@ import { Reportes } from '../../../interfaces/interfaces';
 })
 export class ReportsComponent{
 
-  @Input() reports: Reportes[] = [];
+  @Input() reports: Report[] = [];
+
+  text: string = '';
 
   constructor() { }
+  
+
+  
+  onSearchChange(event) {
+    this.text = event.detail.value
+    }
 
   
 

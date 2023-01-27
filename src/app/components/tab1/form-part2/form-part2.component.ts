@@ -1,5 +1,6 @@
 import { Component,Input, OnInit} from '@angular/core';
 import { AlertController, ModalController, ToastController } from '@ionic/angular';
+import { Preferences } from '@capacitor/preferences';
 import { NgForm } from '@angular/forms';
 import { ReportsService } from '../../../services/reports.service';
 import { PhotoService } from 'src/app/services/photo.service';
@@ -42,7 +43,8 @@ export class FormPart2Component implements OnInit {
           handler: () => {
             const mensaje = 'Reporte enviado'
             this.reportService.postReports(this.report);
-            this.modalCtrl.dismiss(true);
+            Preferences.clear();
+            this.modalCtrl.dismiss();
             this.presentToast(mensaje);
           },
         },
@@ -55,9 +57,9 @@ export class FormPart2Component implements OnInit {
   onSubmit(formulario: NgForm) {  
   }
 
-  async presentToast(mesaje: string) {
+  async presentToast(mesage: string) {
     const toast = await this.toastCtrl.create({
-      message: mesaje,
+      message: mesage,
       duration: 1500
     });
     toast.present();

@@ -14,6 +14,7 @@ import { DetailsComponent } from './tab2/details/details.component';
 import { SwiperModule } from 'swiper/angular';
 
 
+
 @NgModule({
   entryComponents: [DetailComponent,
   DetailsComponent],
@@ -24,7 +25,8 @@ import { SwiperModule } from 'swiper/angular';
   exports: [DetailComponent,
     CardsComponent,
     MapComponent, FormPart2Component,
-    ReportComponent, ReportsComponent, DetailsComponent],
+    ReportComponent, ReportsComponent, DetailsComponent
+  ],
   imports: [
     CommonModule,
     PipesModule,

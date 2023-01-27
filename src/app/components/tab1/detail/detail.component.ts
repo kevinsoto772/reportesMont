@@ -1,4 +1,4 @@
-import {Component, DoCheck, Input, OnInit} from '@angular/core';
+import { Component, DoCheck, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { PhotoService } from 'src/app/services/photo.service';
 import { FormPart2Component } from '../form-part2/form-part2.component';
@@ -11,8 +11,8 @@ import { MapService } from 'src/app/services/map.service';
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.scss'],
 })
-export class DetailComponent implements OnInit, DoCheck{
-  @Input() tipo;
+export class DetailComponent implements DoCheck, OnInit{
+  @Input()  type_id;
 
   public tabName: string = 'reportar';
   public  position = {
@@ -22,29 +22,25 @@ export class DetailComponent implements OnInit, DoCheck{
   
   data: any;
 
-  reporte = {
-    tipo: '',
-    direccion: '',
-    referencia: '',
-    correo: '',
-    latitud: 0,
-    longitud: 0,
-    descripcion: '',
-    utlImage: ''
+  report = {
+    type: 0,
+    address: '',
+    reference: '',
+    latitude: 0,
+    longitude: 0,
   };
 
   constructor(private modalCtrl: ModalController, public photoservice: PhotoService, private mapService: MapService) { }
+  
+  ngOnInit(){
+    this.report.type =  this.type_id;
+  }
 
   ngDoCheck() {
     const data = this.mapService.sendLocation();
     if (data !== undefined) {
-      this.reporte.direccion = data.direccion.formatted_address;
+      this.report.address = data.direccion.formatted_address;
     }
-  }
-
-
-  async ngOnInit() {
-    this.photoservice.loadFiles;    
   }
 
   cerrar() {
@@ -52,14 +48,14 @@ export class DetailComponent implements OnInit, DoCheck{
   }
 
   async continue() {
-    this.reporte.tipo = this.tipo;
+    this.report.type =  this.type_id;
     this.data = this.mapService.sendLocation();
-    this.reporte.latitud = this.data.posicion.lat;
-    this.reporte.longitud = this.data.posicion.lng;
+    this.report.latitude = this.data.posicion.lat;
+    this.report.longitude = this.data.posicion.lng;
     const modal = await this.modalCtrl.create({
       component: FormPart2Component,
       componentProps: {
-        reporte: this.reporte,
+        report: this.report,
       }
     });
     modal.present();
@@ -67,10 +63,6 @@ export class DetailComponent implements OnInit, DoCheck{
 
   addnewToGallery() {
     this.photoservice.addnewToGallery();
-  }
-
-  postimage(photo: photo) {
-    this.photoservice.startUpload(photo);
   }
 
   SearchInGallery() {
@@ -88,7 +80,6 @@ export class DetailComponent implements OnInit, DoCheck{
 
   Mygeolocation() {
     const resp = this.mapService.getGeolocation();
-    console.log(resp);
   }
 
 }
