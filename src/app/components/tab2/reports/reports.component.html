@@ -1,7 +1,12 @@
+<ng-container *ngIf="reports.length > 0" >
+  <ion-searchbar mode="ios" placeholder="Buscar reporte" inputmode="text" 
+  (ionChange)="onSearchChange($event)" [debounce]="250"
+></ion-searchbar>
 <ion-grid fixed>
   <ion-row>
-    <ion-col *ngFor="let report of reports; let i = index" size="12"  size-lg="3" size-md="4" size-xs="12"> 
+    <ion-col *ngFor="let report of reports | search:text; let i = index" size="12"  size-lg="6" size-md="4" size-xs="12"> 
       <app-report [report]="report"  [index]="i"></app-report>
     </ion-col>
   </ion-row>
 </ion-grid>
+</ng-container>

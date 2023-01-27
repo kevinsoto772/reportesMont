@@ -25,10 +25,9 @@ export class MapService {
   }
 
 
-  loadmap(fathertab: string, position: any) {
+  loadmap(fathertab: string, position: any, type: number) {
 
     if (fathertab === 'reportar') {
-      console.log(fathertab);
       const mapEle: HTMLElement = document.getElementById(`${fathertab}-map`);
       const geocoder = new google.maps.Geocoder();
       const myLatLng = { lat: position.lat, lng: position.lng };
@@ -59,7 +58,7 @@ export class MapService {
     } else if (fathertab === 'buscar') {
 
       const mapEle: HTMLElement = document.getElementById(`${fathertab}-map`);
-      const  myLatLng = { lat: position.lat, lng: position.lng };
+      const myLatLng = { lat: position.lat, lng: position.lng };
 
       this.map = new google.maps.Map(mapEle, {
         center: myLatLng,
@@ -69,7 +68,7 @@ export class MapService {
       });
 
       google.maps.event.addListenerOnce(this.map, 'idle', () => {
-        this.marker = this.addMarker(position);
+        this.addInfoAndMarker(position, type);
         mapEle.classList.add('show-map');
       });
 
@@ -108,6 +107,19 @@ export class MapService {
   }
 
   addMarker(position: any) {
+    const icon = "../../assets/logos/alfiler.png";
+    const markers = new google.maps.Marker({
+      position: position,
+      map: this.map,
+      title: this.label.titulo,
+      icon: icon,
+      draggable: false,
+      animation: google.maps.Animation.DROP
+    })
+    return markers;
+  }
+
+  addInfoAndMarker(position: any, type: number) {
     const markers = new google.maps.Marker({
       position: position,
       map: this.map,
@@ -115,6 +127,62 @@ export class MapService {
       draggable: false,
       animation: google.maps.Animation.DROP
     })
+
+    
+    if (type == 1) {
+
+      const contentString =
+      '<div id="content">' +
+      '<div id="siteNotice">' +
+      "</div>" +
+      '<h1 id="firstHeading" class="firstHeading">Tipo de reporte:</h1>' +
+      '<div id="bodyContent">' +
+      "<p><b>Daño en alumbrado público</b>" +
+      "</div>" +
+        "</div>";
+      
+      this.infowindow = new google.maps.InfoWindow({
+        content: contentString,
+      });
+    } else if (type == 2) {
+      const contentString =
+      '<div id="content">' +
+      '<div id="siteNotice">' +
+      "</div>" +
+      '<h1 id="firstHeading" class="firstHeading">Tipo de reporte:</h1>' +
+      '<div id="bodyContent">' +
+      "<p><b>Acumulación de basura</b>" +
+      "</div>" +
+        "</div>";
+      
+      this.infowindow = new google.maps.InfoWindow({
+        content: contentString,
+        Width: 200,
+      });
+    } else if (type == 3) {
+      const contentString =
+      '<div id="content">' +
+      '<div id="siteNotice">' +
+      "</div>" +
+      '<h1 id="firstHeading" class="firstHeading">Tipo de reporte:</h1>' +
+      '<div id="bodyContent">' +
+      "<p><b>Fallo de semáforo</b>" +
+      "</div>" +
+        "</div>";
+      
+      this.infowindow = new google.maps.InfoWindow({
+        content: contentString,
+        Width: 200,
+      });
+    }
+    
+    markers.addListener("click", () => {
+      this.infowindow.open({
+        anchor: markers,
+        map: this.map,
+      });
+    });
+
     return markers;
   }
 
@@ -130,13 +198,14 @@ export class MapService {
       }
       this.NewPosition = JSON.stringify(myPosition);
       this.geocode(geocoder);
-      
+
       window.setTimeout(() => {
-        this.loadmap(mapEle, myPosition);
-      },1000);
+        this.loadmap(mapEle, myPosition, 0);
+      }, 1000);
     }
 
 
   }
+
 
 }

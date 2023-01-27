@@ -1,0 +1,19 @@
+#tab-bar{
+--background:transparent;
+// background-color:var(--ion-color-green);
+background-color:#FDC868; 
+}
+
+ion-tab-button{
+    --color:#818181;
+    --color-selected:#161616;
+    --ripple-color:#FDC868;
+    transition: all cubic-bezier(0.215, 0.610, 0.355, 1) .5s;
+}
+    
+.tab-buttons:hover{
+    transform: translateY(-4px);
+}
+
+
+

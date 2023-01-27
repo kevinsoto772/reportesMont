@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
-import { Reportes } from '../interfaces/interfaces';
+import { Report } from '../interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ import { Reportes } from '../interfaces/interfaces';
 export class StorageService {
 
   private _storage: Storage | null = null;
-  private _localReports: Reportes[] = [];
+  private _localReports: Report[] = [];
 
   constructor(private storage: Storage, private toastCtrl: ToastController) { 
     this.init();
@@ -34,17 +34,17 @@ export class StorageService {
     this.loadFavorites();
   }
 
-  async saveRemoveReport(report: Reportes) {
+  async saveRemoveReport(report: Report) {
     let mensaje = '';
 
     const exists = this._localReports.find(localReport => localReport.id === report.id);
     
     if (exists) {
       this._localReports = this._localReports.filter(localReport => localReport.id !== report.id);
-      mensaje = 'Removido de favoritos'
+      mensaje = 'Removido de apoyados'
     } else {
       this._localReports = [report, ...this._localReports];
-      mensaje = 'Agregado de favoritos'
+      mensaje = 'Agregado a apoyados'
     }    
 
     this.presentToast(mensaje);
@@ -59,11 +59,10 @@ export class StorageService {
       this._localReports = reports || [];
       
     } catch (error) {
-
         }
   }
 
-  articleInFavorite(report: Reportes) {
+  articleInFavorite(report: Report) {
 
     return !!this._localReports.find(localStorage => localStorage.id === report.id);
   }

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ImagePipe } from './image.pipe';
+import { SearchPipe } from './search.pipe';
 
 
 
@@ -8,10 +9,12 @@ import { ImagePipe } from './image.pipe';
   declarations: [
 
   
-    ImagePipe
+    ImagePipe,
+        SearchPipe
   ],
   exports: [
-    ImagePipe
+    ImagePipe,
+    SearchPipe
   ],
   imports: [
     CommonModule,

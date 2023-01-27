@@ -1,0 +1,15 @@
+::-webkit-scrollbar,
+*::-webkit-scrollbar {
+    display: none !important;
+    overflow: hidden;
+}
+
+#types{
+    font-weight: 100;
+}
+
+#filter { --ion-background-color: transparent;}
+
+ion-searchbar{
+    box-shadow: none;
+}

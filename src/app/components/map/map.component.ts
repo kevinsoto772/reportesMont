@@ -10,11 +10,12 @@ export class MapComponent implements AfterViewInit {
 
   @Input() fathertab; 
   @Input() position; 
+  @Input() type; 
 
   constructor(private mapService: MapService) { }
 
   ngAfterViewInit() {
-    this.mapService.loadmap(this.fathertab, this.position);
+    this.mapService.loadmap(this.fathertab, this.position, this.type);
   }
 
 }

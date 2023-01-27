@@ -1,61 +1,65 @@
 <ion-content *ngIf="report">
   <ion-label class="titulo">
-    <h1>{{ report.tipo }}</h1>
+    <h1>{{ Type }}</h1>
   </ion-label>
 
-  <app-map [fathertab]="tabName" [position]="position"></app-map>
+  <app-map [fathertab]="tabName" [position]="position" [type]="report.type"></app-map>
+
+  <section>
+    <swiper [config]="slideOpt">
+      <ng-template swiperSlide *ngFor="let image of image_array">
+        <ion-card>
+          <img [src]="image.toString()" *ngIf="image_array.length > 0" id="image">
+        </ion-card>
+      </ng-template>
+    </swiper>
+  </section>
 
   <ion-grid fixed>
     <ion-row>
-      <ion-col size="10" class="photoReport">
-        <ion-card>
-          <ion-img
-            [src]="report.urlImage | image"
-            *ngIf="report.urlImage"
-            id="image"
-          ></ion-img>
-        </ion-card>
-      </ion-col>
-
-      <ion-col size="10">
+      <ion-col size="12">
         <ion-label color="primary">Dirección</ion-label>
-
         <ion-item>
           <ion-icon name="location" color="primary"></ion-icon>
-          <ion-note slot="end" color="primary">{{ report.direccion }}</ion-note>
+          <ion-note slot="end" color="primary">{{ report.address }}</ion-note>
         </ion-item><br>
-
-        <ion-label color="primary">Referencia</ion-label>
-
-        <ion-item>
-          <ion-icon name="clipboard" color="primary"></ion-icon>
-          <ion-note slot="end" color="primary">{{
-            report.referencia
-          }}</ion-note>
-        </ion-item>
-
       </ion-col>
     </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+        <ion-label color="primary">Referencia</ion-label>
+        <ion-item>
+          <ion-icon name="clipboard" color="primary"></ion-icon>
+          <ion-note slot="end" color="primary">{{report.reference}}</ion-note>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+
+
   </ion-grid>
 
   <ion-grid fixed>
     <ion-row>
-
       <ion-col size="12">
-        <ion-label>{{ report.descripcion | slice:0:ocultar}}</ion-label>
-        <span *ngIf="ocultar !== 5000 && report.descripcion.length > 150">... </span>
+        <p>{{ report.description | slice:0:ocultar}}</p>
+        <span *ngIf="ocultar !== 5000 && report.description.length > 150">... </span>
         <ion-label color="primary" (click)="ocultar = 5000"
-        *ngIf="ocultar !== 5000 && report.descripcion?.length > 150" >Leer más!</ion-label>
-
+          *ngIf="ocultar !== 5000 && report.description?.length > 150">Leer más!</ion-label>
       </ion-col>
+    </ion-row>
 
+    <ion-row>
+      <ion-col size="12">
+        <ion-item id="item">
+          <ion-label>Apoyos:</ion-label>
+          <ion-badge slot="end">442</ion-badge>
+        </ion-item>
+      </ion-col>
     </ion-row>
   </ion-grid>
 
-  <ion-item id="item">
-    <ion-label>Favorito:</ion-label>
-    <ion-badge slot="end">442</ion-badge>
-  </ion-item>
 
 </ion-content>
 
@@ -63,23 +67,17 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button (click)="back()">
-        <ion-icon
-          slot="start"
-          name="arrow-undo-circle-outline"
-          color="primary"
-        ></ion-icon>
+        <ion-icon slot="start" name="arrow-undo-circle-outline" color="primary"></ion-icon>
         <ion-label>Regresar</ion-label>
       </ion-button>
     </ion-buttons>
 
     <ion-buttons slot="end">
-    <ion-button (click)="favorite()">
-      <ion-icon
-        slot="end" [name]="star" color="primary"
-      ></ion-icon>
-      <ion-label>Favorito</ion-label>
-    </ion-button>
-  </ion-buttons>
+      <ion-button (click)="support()">
+        <ion-icon slot="end" [name]="push" color="primary"></ion-icon>
+        <ion-label>Apoyar</ion-label>
+      </ion-button>
+    </ion-buttons>
 
   </ion-toolbar>
 </ion-footer>

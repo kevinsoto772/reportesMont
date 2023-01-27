@@ -3,12 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http'
 import { Observable, of } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { ReportByTypeAndPage, Reportes } from '../interfaces/interfaces';
-import { map } from 'rxjs/operators';
-import { NgForm } from '@angular/forms';
+import { Report } from '../interfaces/interfaces';
 import { PhotoService } from './photo.service';
 
-const apiUrl = environment.apiUrl;
 const apiURL = environment.apiURL;
 
 @Injectable({
@@ -16,30 +13,33 @@ const apiURL = environment.apiURL;
 })
 export class ReportsService {
   headers: HttpHeaders;
-  private reportsByType: ReportByTypeAndPage = {}
 
 
   constructor(private http: HttpClient, public photoservice: PhotoService) {
     this.headers = new HttpHeaders({
-      "API-KEY": "l9HgWr22z7hEFrwF9DhHpL5f4RIv"
+      "API-KEY": "iTp1lxv82eURtXF6Q"
     });
   }
-
 
   getReports(): Observable<any> {
     const query = apiURL + '/reports';
     return this.http.get<any>(query, {headers: this.headers});
   }
 
-  getTopHeadlinesByTypes(type: string, loadMore: boolean = false): Observable<Reportes[]> {
+  getReportsTypes() {
+    const query = apiURL + `/report-types`;
+    return this.http.get<any>(query, {headers: this.headers});
+  }
 
-    const query = apiUrl + `/reportes?tipo=${type}`;
-    return this.http.get<any>(query);
+  getTopHeadlinesByTypes(type: number, loadMore: boolean = false): Observable<Report[]> {
+
+    const query = apiURL + `/reports/search?type=${type}`;
+    return this.http.get<any>(query, {headers: this.headers});
   }
 
   getReportsID(id: number) {
-    const query = apiUrl + `/reportes/${id}`;
-    return this.http.get<any>(query);
+    const query = apiURL + `/report/${id}`;
+    return this.http.get<any>(query, {headers: this.headers});
   }
 
   async postReports(data: any) {
@@ -60,7 +60,6 @@ export class ReportsService {
     this.http.post(query, formData, {headers: this.headers}).subscribe(res => {
       console.log(res);
     })
-    console.log(formData);
   }
 
 
