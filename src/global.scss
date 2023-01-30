@@ -36,23 +36,23 @@
   src: url(../src/assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf);
 }
 
-.ion-color-yellow{
-    --ion-color-base: var(--ion-color-yellow);
-    --ion-color-base-rgb: var(--ion-color-yellow-rgb);
-    --ion-color-contrast: var(--ion-color-yellow-contrast);
-    --ion-color-contrast-rgb: var(--ion-color-yellow-contrast-rgb);
-    --ion-color-shade: var(--ion-color-yellow-shade);
-    --ion-color-tint: var(--ion-color-yellow-tint);
-  }
+.ion-color-yellow {
+	--ion-color-base: var(--ion-color-yellow);
+	--ion-color-base-rgb: var(--ion-color-yellow-rgb);
+	--ion-color-contrast: var(--ion-color-yellow-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-yellow-contrast-rgb);
+	--ion-color-shade: var(--ion-color-yellow-shade);
+	--ion-color-tint: var(--ion-color-yellow-tint);
+}
 
-  .ion-color-orange {
-    --ion-color-base: var(--ion-color-orange);
-    --ion-color-base-rgb: var(--ion-color-orange-rgb);
-    --ion-color-contrast: var(--ion-color-orange-contrast);
-    --ion-color-contrast-rgb: var(--ion-color-orange-contrast-rgb);
-    --ion-color-shade: var(--ion-color-orange-shade);
-    --ion-color-tint: var(--ion-color-orange-tint);
-  }
+.ion-color-orange {
+	--ion-color-base: var(--ion-color-orange);
+	--ion-color-base-rgb: var(--ion-color-orange-rgb);
+	--ion-color-contrast: var(--ion-color-orange-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-orange-contrast-rgb);
+	--ion-color-shade: var(--ion-color-orange-shade);
+	--ion-color-tint: var(--ion-color-orange-tint);
+}
 
   .ion-color-green {
     --ion-color-base: var(--ion-color-green);
@@ -64,18 +64,61 @@
   }
 
 .text-primary{
-    color: var(--ion-color-danger);
+    color: var(--ion-color-black);
   }
   
   .report-source{
   font-size: 12px;
   }
+
+  ion-title {
+    font-family:'Montserrat';
+  }
   
+
   .title{
     text-align:center; 
     font-family:'Montserrat';
 }
 
+.fs-12px{
+  font-size: 12px;
+}
+.fs-14px{
+  font-size: 14px;
+}
+.fs-16px{
+  font-size: 16px;
+}
+.fs-18px{
+  font-size: 18px;
+}
+.fs-20px{
+  font-size: 20px;
+}
+.fs-25px{
+font-size: 25px;
+}
+
+.mb-1{
+  margin-bottom: 1px;
+}
+.mb-2{
+  margin-bottom: 2px;
+}
+.mb-3{
+  margin-bottom: 3px;
+}
+.mb-4{
+  margin-bottom: 4px;
+}
+.mb-5{
+  margin-bottom: 5px;
+}
+
+.d-flex{
+display: flex;
+}
 .header{
   background-color: #FDC868;
   }
@@ -87,4 +130,31 @@
 .tabsContent{
   --background: #F1EEE7;
 }
-  
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.fast{
+  -webkit-animation-duration: 0.4s;
+  animation-duration: 0.4s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn{
+  animation-name: fadeIn;
+}

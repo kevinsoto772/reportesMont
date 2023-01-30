@@ -3,7 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { PhotoService } from 'src/app/services/photo.service';
 import { FormPart2Component } from '../form-part2/form-part2.component';
 import { photo} from 'src/app/interfaces/interfaces';
-import { NgForm } from '@angular/forms';
+import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { MapService } from 'src/app/services/map.service';
 
 @Component({
@@ -13,49 +13,50 @@ import { MapService } from 'src/app/services/map.service';
 })
 export class DetailComponent implements DoCheck, OnInit{
   @Input()  type_id;
-
+  public form: FormGroup
   public tabName: string = 'reportar';
   public  position = {
   lat: 8.74798,
   lng: -75.88143
 }
   
-  data: any;
+  location: any;
 
-  report = {
-    type: 0,
-    address: '',
-    reference: '',
-    latitude: 0,
-    longitude: 0,
-  };
 
-  constructor(private modalCtrl: ModalController, public photoservice: PhotoService, private mapService: MapService) { }
+  constructor(private modalCtrl: ModalController, public photoservice: PhotoService, private mapService: MapService) { 
+    this.form = new FormGroup({
+      address: new FormControl({value:'', disabled: true}, [Validators.required],  ),
+      reference: new FormControl('', [Validators.required]),
+      type: new FormControl(null, Validators.required),
+      latitude: new FormControl(null, Validators.required),
+      longitude: new FormControl(null, Validators.required),
+    })
+  }
   
-  ngOnInit(){
-    this.report.type =  this.type_id;
+  ngOnInit() {
+    this.form.controls['type'].setValue(this.type_id)
   }
 
   ngDoCheck() {
-    const data = this.mapService.sendLocation();
-    if (data !== undefined) {
-      this.report.address = data.direccion.formatted_address;
+    const location = this.mapService.sendLocation();
+    if (location !== undefined) {
+      this.form.controls['address'].setValue(location.direccion.formatted_address)
+      this.form.controls['address'].enable()
     }
   }
 
-  cerrar() {
+  close() {
     this.modalCtrl.dismiss();
   }
 
   async continue() {
-    this.report.type =  this.type_id;
-    this.data = this.mapService.sendLocation();
-    this.report.latitude = this.data.posicion.lat;
-    this.report.longitude = this.data.posicion.lng;
+    this.location = this.mapService.sendLocation();
+    this.form.controls['latitude'].setValue(this.location.posicion.lat)
+    this.form.controls['longitude'].setValue(this.location.posicion.lng)
     const modal = await this.modalCtrl.create({
       component: FormPart2Component,
       componentProps: {
-        report: this.report,
+        form: this.form,
       }
     });
     modal.present();
@@ -73,13 +74,8 @@ export class DetailComponent implements DoCheck, OnInit{
     this.photoservice.deletePicture(photo, position);
   }
 
-  onSubmit(formulario: NgForm) {
-    console.log(formulario);
-    
-  }
-
   Mygeolocation() {
-    const resp = this.mapService.getGeolocation();
+    this.mapService.getGeolocation();
   }
 
 }

@@ -30,4 +30,15 @@ export interface LocalFile{
   data: string
 }
 
+export interface loginResponse{
+  user: user
+  token: string
+}
+
+export interface user {
+  name: string
+  lastName: string
+  document: string
+  email:string
+}
 

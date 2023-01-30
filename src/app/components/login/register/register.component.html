@@ -1,0 +1,68 @@
+<ion-header [translucent]="false" mode="ios">
+    <ion-toolbar>
+        <ion-title>Registro</ion-title>
+        <ion-buttons slot="start">
+            <ion-button (click)="close()" color="primary">
+                <ion-icon slot="start" name="arrow-back-outline" color="dark"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <section class="container ion-padding" >
+        <form  [formGroup]="this.formRegister" class="form">
+            <div>
+                <ion-item class="inputs" id="input-user">
+                    <ion-label position="floating">Nombre</ion-label>
+                    <ion-input type="text" class="form-control"  formControlName="name" required></ion-input>
+                </ion-item>
+            </div>
+
+            <div>
+                <ion-item class="inputs">
+                    <ion-label position="floating">Apellido</ion-label>
+                    <ion-input type="text" name="referencia" class="form-control"  formControlName="lastName" required></ion-input>
+                </ion-item>
+            </div>
+
+            <div>
+                <ion-item class="inputs">
+                    <ion-label position="floating">Documento de identidad</ion-label>
+                    <ion-input type="number" name="referencia" class="form-control"  formControlName="documentType" required></ion-input>
+                </ion-item>
+            </div>
+
+            <div>
+                <ion-item class="inputs">
+                    <ion-label position="floating">Documento de identidad</ion-label>
+                    <ion-input type="number" name="referencia" class="form-control"  formControlName="documentType" required></ion-input>
+                </ion-item>
+            </div>
+
+            <div>
+                <ion-item class="inputs">
+                    <ion-label position="floating">Correo</ion-label>
+                    <ion-input type="email" name="referencia" class="form-control"  formControlName="email" required></ion-input>
+                </ion-item>
+            </div>
+
+            <div>
+                <ion-item class="inputs">
+                    <ion-label position="floating">Teléfono</ion-label>
+                    <ion-input type="number" name="phone" class="form-control"  formControlName="phone"  required></ion-input>
+                </ion-item>
+            </div>
+
+            <div>
+                <ion-item class="inputs">
+                    <ion-label position="floating">Contraseña</ion-label>
+                    <ion-input type="password" name="referencia" class="form-control" formControlName="password" required></ion-input>
+                </ion-item>
+            </div>
+            
+            <ion-button color="orange" type="submit"><span class="span-login">Iniciar
+                    sesión</span></ion-button>
+        </form>
+    </section>
+</ion-content>

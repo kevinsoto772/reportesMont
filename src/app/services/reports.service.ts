@@ -17,7 +17,7 @@ export class ReportsService {
 
   constructor(private http: HttpClient, public photoservice: PhotoService) {
     this.headers = new HttpHeaders({
-      "API-KEY": "iTp1lxv82eURtXF6Q"
+      "API-KEY": "p5iZ3e4i2hMMUMJh1bgUwFfNTS"
     });
   }
 

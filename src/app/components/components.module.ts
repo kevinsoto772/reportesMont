@@ -6,12 +6,13 @@ import { PipesModule } from '../pipes/pipes.module';
 import { IonicModule } from '@ionic/angular';
 import { MapComponent } from './map/map.component';
 import { FormPart2Component } from './tab1/form-part2/form-part2.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReportComponent } from './tab2/report/report.component';
 import { ReportsComponent } from './tab2/reports/reports.component';
 import { DetailsComponent } from './tab2/details/details.component';
 
 import { SwiperModule } from 'swiper/angular';
+import { RegisterComponent } from './login/register/register.component';
 
 
 
@@ -21,11 +22,11 @@ import { SwiperModule } from 'swiper/angular';
   declarations: [DetailComponent,
     CardsComponent,
     MapComponent, FormPart2Component, ReportComponent, ReportsComponent,
-    DetailsComponent],
+    DetailsComponent, RegisterComponent],
   exports: [DetailComponent,
     CardsComponent,
     MapComponent, FormPart2Component,
-    ReportComponent, ReportsComponent, DetailsComponent
+    ReportComponent, ReportsComponent, DetailsComponent, RegisterComponent
   ],
   imports: [
     CommonModule,
@@ -33,6 +34,7 @@ import { SwiperModule } from 'swiper/angular';
     IonicModule,
     FormsModule,
     SwiperModule,
+    ReactiveFormsModule
   ]
 })
 export class ComponentsModule { }

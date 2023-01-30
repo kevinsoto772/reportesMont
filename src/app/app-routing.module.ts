@@ -3,16 +3,21 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'reports',
     loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule)
+  },
+  {
+    path: 'my-reports',
+    loadChildren: () => import('./pages/my-reports/my-reports.module').then( m => m.MyReportsPageModule)
   },
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'my-reports',
-    loadChildren: () => import('./pages/my-reports/my-reports.module').then( m => m.MyReportsPageModule)
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: 'login'
   }
 ];
 @NgModule({

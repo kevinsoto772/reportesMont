@@ -1,7 +1,7 @@
 import { Component,Input, OnInit} from '@angular/core';
 import { AlertController, ModalController, ToastController } from '@ionic/angular';
 import { Preferences } from '@capacitor/preferences';
-import { NgForm } from '@angular/forms';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ReportsService } from '../../../services/reports.service';
 import { PhotoService } from 'src/app/services/photo.service';
 
@@ -11,23 +11,36 @@ import { PhotoService } from 'src/app/services/photo.service';
   styleUrls: ['./form-part2.component.scss'],
 })
 export class FormPart2Component implements OnInit {
-  @Input() reports;
+  @Input() form;
+  public form_detail: FormGroup
+  constructor(private modalCtrl: ModalController, private reportService: ReportsService, private alertCtrl: AlertController, private toastCtrl: ToastController, public photoservice: PhotoService) { 
+    this.form_detail = new FormGroup({
+      email: new FormControl('', [Validators.required],  ),
+      description: new FormControl('', [Validators.required]),
+      user_document: new FormControl('', Validators.required),
+    })
+  }
 
-  report = {
-    email: '',
-    description: '',
-    user_document: '',
-    Image: ''
-  };
-  constructor(private modalCtrl: ModalController, private reportService: ReportsService, private alertCtrl: AlertController, private toastCtrl: ToastController, public photoservice: PhotoService ) { }
-
-  ngOnInit() { }
+  ngOnInit() { 
+    console.log(this.form_detail)
+    
+  }
   
   cerrar() {
     this.modalCtrl.dismiss();
   }
 
   async SendReport() {
+    const report = {
+      type: this.form.controls['type'].value,
+      address: this.form.controls['address'].value,
+      reference: this.form.controls['reference'].value,
+      latitude: this.form.controls['latitude'].value,
+      longitude: this.form.controls['longitude'].value,
+      email: this.form_detail.controls['email'].value,
+      description: this.form_detail.controls['description'].value,
+      user_document: this.form_detail.controls['user_document'].value,
+    }
     const alert = await this.alertCtrl.create({
       header: '¿Quieres enviar tu reporte?',
       buttons: [
@@ -42,9 +55,10 @@ export class FormPart2Component implements OnInit {
           role: 'confirm',
           handler: () => {
             const mensaje = 'Reporte enviado'
-            this.reportService.postReports(this.report);
+            this.reportService.postReports(report);
+            this.photoservice.photos = []
             Preferences.clear();
-            this.modalCtrl.dismiss();
+            this.modalCtrl.dismiss({close:true});
             this.presentToast(mensaje);
           },
         },
@@ -54,8 +68,6 @@ export class FormPart2Component implements OnInit {
     await alert.present();
   }
 
-  onSubmit(formulario: NgForm) {  
-  }
 
   async presentToast(mesage: string) {
     const toast = await this.toastCtrl.create({
