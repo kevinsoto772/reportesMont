@@ -1,9 +1,35 @@
-<div>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</div>
+<ion-header [translucent]="false" mode="ios">
+    <ion-toolbar>
+       <ion-img src="../../assets/logos/LOGO APP.png" class="img-icon"></ion-img>
+    </ion-toolbar>
+</ion-header>
 
+<ion-content class="ion-padding" [fullscreen]="true">
+    <div class="img-container d-flex">
+        <ion-img src="../../assets/logos/proyecto.svg" class="img-fluid"></ion-img>
+    </div>
+    <ion-header collapse="condense" mode="ios" class="ion-no-border">
+        <ion-toolbar>
+            <ion-title size="large" class="title">Hola !</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <div class="ion-padding">
+        <ion-label id="parrafo">Bienvenido a nuestra app de reportes SinúRep</ion-label>
+    </div>
+
+    <section class="register-container">
+        <div class="ion-padding">
+            <ion-button color="yellow" type="submit" (click)="login()"><span class="span-login">Iniciar
+                    sesión</span></ion-button>
+        </div>
+
+    </section>
+
+    <section class="register-container">
+        <div class="ion-padding">
+            <ion-button color="orange" type="submit" (click)="register()"><span class="span-login">Crear cuenta
+                    SinúRep</span></ion-button>
+        </div>
+    </section>
+</ion-content>

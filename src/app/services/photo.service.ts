@@ -3,11 +3,9 @@ import { Camera, CameraResultType, CameraSource, Photo, GalleryPhoto } from '@ca
 import { Filesystem, Directory } from '@capacitor/filesystem';
 import { Preferences } from '@capacitor/preferences';
 import { photo, LocalFile } from '../interfaces/interfaces';
-import { LoadingController, Platform } from '@ionic/angular';
-import { HttpClient } from '@angular/common/http';
+import {  Platform } from '@ionic/angular';
 
 const IMAGE_DIR = 'stored-images';
-
 
 let photo: photo;
 @Injectable({
@@ -20,7 +18,7 @@ export class PhotoService {
 
   private PHOTO_STORAGE: string = "fotos";
 
-  constructor(private platform: Platform, private http: HttpClient, private loadingCtrl: LoadingController) {
+  constructor(private platform: Platform) {
     }
 
 
@@ -31,6 +29,7 @@ export class PhotoService {
       source: CameraSource.Camera,
       quality: 100
     });
+    
 
     const savedImageFile = await this.savePicture(photoCaptured);
     this.photos.unshift(savedImageFile);
@@ -48,7 +47,8 @@ export class PhotoService {
     const savedFile = await Filesystem.writeFile({
       path: `${IMAGE_DIR}/${fileName}`,
       data: base64Data,
-      directory: Directory.Data
+      directory: Directory.Data,
+      recursive: true
     });
 
     if (this.platform.is('hybrid')) {
@@ -152,6 +152,4 @@ export class PhotoService {
 
     return formdata;
   }
-
-
 }

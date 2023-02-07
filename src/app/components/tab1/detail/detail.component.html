@@ -1,32 +1,40 @@
 <ion-header [translucent]="true" mode="ios">
     <ion-toolbar>
-        <ion-title>Ubicación del reporte</ion-title>
+        <ion-title>Ubicación del problema</ion-title>
         <ion-buttons slot="start">
-            <ion-button (click)="cerrar()" color="primary">
-                <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+            <ion-button (click)="close()" color="primary">
+                <ion-icon slot="start" name="arrow-back-outline" color="dark"></ion-icon>
             </ion-button>
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <form #formulario="ngForm" (ngSubmit)="onSubmit(formulario)">
-        <div class="container">
-            <ion-item>
-                <ion-label position="floating">Seleccione en el mapa la ubicación</ion-label>
-                <ion-input type="text" name="direccion" [(ngModel)]="report.address" [disabled]="report.address == '' "
-                    readonly required></ion-input>
-            </ion-item>
-        </div>
-        <div class="container">
-            <ion-item>
-                <ion-label position="floating">Referencia en la via</ion-label>
-                <ion-input type="text" name="referencia" [(ngModel)]="report.reference"></ion-input>
-            </ion-item>
+    <form [formGroup]="this.form" class="mb-5">
+        <div class="container-inputs">
+            <ion-label class="title fs-12px">
+                Dirección del daño en la via pública.
+            </ion-label>
+            <div class="inputs">
+                <ion-item>
+                    <ion-label position="floating">Seleccione en el mapa la ubicación</ion-label>
+                    <ion-input type="text"  class="form-control" formControlName="address"  readonly required></ion-input>
+                </ion-item>
+            </div>
+
+            <ion-label class="title fs-12px" style="margin-top:20px;">
+                Digite un punto de referencia de la dirección.
+            </ion-label>
+            <div class="inputs">
+                <ion-item>
+                    <ion-label position="floating">Referencia en la via</ion-label>
+                    <ion-input type="text" name="referencia"  class="form-control" formControlName="reference"></ion-input>
+                </ion-item>
+            </div>
         </div>
     </form>
 
-    <app-map [fathertab]="tabName" [position]='position' [type] = 'report.type'></app-map>
+    <app-map [fathertab]="tabName" [position]='position' [type] = "this.form.controls['type'].value"></app-map>
     
     <ion-chip mode="ios" id="myPosition" [outline]="true" (click)="Mygeolocation()">
         <label> mi ubicación</label>
@@ -36,7 +44,7 @@
     <div>
         <ion-grid fixed >
             <ion-row>
-                <ion-col size="4" sizeLg="2" class="wrapped-image" *ngFor="let photo of photoservice.photos; index as position">
+                <ion-col size="4" sizeLg="2" class="wrapped-image" *ngFor="let photo of this.photoservice.photos; index as position">
                     <ion-button class="foto" color="danger" fill="clear" (click)="deletePicture(photo, position)">
                         <ion-icon slot="icon-only" name="close-circle"></ion-icon>
                     </ion-button>
@@ -47,32 +55,23 @@
 
         <ion-grid>
             <ion-row>
-                <ion-col size="6" style="height:50px;">
-                    <ion-label id="label1">Tomar fotografia</ion-label>
-                    <div style="margin:10px;"></div>
-                    <ion-button class="button" id="camera" shape="round" fill="outline" (click)="addnewToGallery()" color="primary">
+                <ion-col size="6" class="d-flex">
+                    <ion-label class="photo-label">Tomar fotografia</ion-label>
+                    <ion-button class="button" shape="round" fill="outline" (click)="addnewToGallery()" color="dark">
                         <ion-icon slot="icon-only" name="camera-outline"></ion-icon>
                     </ion-button>
                 </ion-col>
 
-                <ion-col size="6">
-                    <ion-label id="label2">agregar de galeria</ion-label>
-                    <div style="margin:10px;"></div>
-                    <ion-button id="galery" class="button" shape="round" fill="outline" (click)=" SearchInGallery()" color="primary">
+                <ion-col size="6" class="d-flex">
+                    <ion-label class="photo-label">agregar de galeria</ion-label>
+                    <ion-button  class="button" shape="round" fill="outline" (click)=" SearchInGallery()" color="dark">
                         <ion-icon slot="icon-only" name="image-outline"></ion-icon>
                     </ion-button>
                 </ion-col>
-
-            </ion-row>
-
-            <ion-row>
                 <ion-col size="12">
-                    <ion-button id="continue" color="green" (click)="continue()"  shape="round" type="submit" [disabled] ="formulario.invalid"> Continuar </ion-button>
+                    <ion-button id="continue" color="yellow" (click)="continue()"  shape="round" type="submit" [disabled] ="this.form.controls['address'].value == '' || this.form.controls['reference'].value == '' "> Continuar </ion-button>
                 </ion-col>
             </ion-row>
         </ion-grid>
-
     </div>
-
-
 </ion-content>

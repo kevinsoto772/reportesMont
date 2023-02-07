@@ -1,9 +1,9 @@
 <ion-header [translucent]="true" mode="ios">
     <ion-toolbar>
-        <ion-title>Datos del problema</ion-title>
+        <ion-title>Datos del ciudadano</ion-title>
         <ion-buttons slot="start">
             <ion-button (click)="cerrar()" color="red">
-                <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+                <ion-icon slot="start" name="arrow-back-outline" color="dark"></ion-icon>
             </ion-button>
         </ion-buttons>
     </ion-toolbar>
@@ -11,31 +11,32 @@
 
 <ion-content>
     
-<form  #formulario="ngForm" (ngSubmit)="onSubmit(formulario)" >
-
-    <div class="container">
-        <ion-item id="input1">
-            <ion-label position="floating">Descripción</ion-label>
-            <ion-input [(ngModel)]="report.description" name="description"  required></ion-input>
-        </ion-item>        
-    </div>
+<form [formGroup]="this.form_detail" >
 
     <div class="container">
         <ion-item id="input2">
             <ion-label position="floating">Numero de documento</ion-label>
-            <ion-input [(ngModel)]="report.user_document" name="user_document"  required></ion-input>
+            <ion-input type="text" placeholder="Ingrese su numero de documento"  class="form-control" formControlName="user_document" required></ion-input>
         </ion-item>        
     </div>
 
     <div class="container">
         <ion-item id="input3">
             <ion-label position="floating">Correo electronico</ion-label>
-            <ion-input  type="email" placeholder="Email" [(ngModel)]="report.email" name="email"  required
+            <ion-input  type="email" placeholder="Ingrese un correo electronico" class="form-control" formControlName="email"  required
             pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"></ion-input>
         </ion-item>
     </div>
 
-    <ion-button id="enviar" shape="round" type="submit" [disabled]="formulario.invalid" (click)="SendReport()" color="yellow">
+    <div class="container">
+        <ion-item id="input1">
+            <ion-label position="floating">Descripción</ion-label>
+            <ion-textarea  placeholder="Describa el problema" type="text"  class="form-control" formControlName="description" required></ion-textarea>
+        </ion-item>        
+    </div>
+
+
+    <ion-button id="enviar" shape="round" type="submit" [disabled]="form.invalid" (click)="SendReport()" color="yellow">
         Enviar reporte
     </ion-button>
 </form>

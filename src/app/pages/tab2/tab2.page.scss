@@ -4,11 +4,46 @@
     overflow: hidden;
 }
 
+.toolbar-background:host{
+
+    --background: var(--ion-toolbar-background, var(--ion-background-color: #FDC868;));
+    
+}
+
+
 #types{
     font-weight: 100;
 }
 
 #filter { --ion-background-color: transparent;}
+
+#message {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    top: 30%;
+}
+
+#message ion-label {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#col_image {
+    margin: auto;
+}
+
+#logo {
+    display: block;
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 ion-searchbar{
     box-shadow: none;

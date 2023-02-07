@@ -2,28 +2,25 @@
   <ion-menu side="start" menuId="first" contentId="main" swipeGesture="false">
     <ion-content>
       <div class="menu-header-bg"></div>
-      <div class="header-content">
-        <img src="../assets/logos/usuario.png">
-        <ion-label>
-          <h2>Dr. Hamad Fakih</h2>
-        </ion-label>
-      </div>
+      <app-menu></app-menu>
       <ion-list lines="none" class="menu-items">
-        <ion-item class="option active" routerLink="/tabs/tab1">
+        <ion-item class="option active" routerLink="reports/tabs/tab1">
           <ion-icon name="document-text-outline"></ion-icon>Reportar
         </ion-item>
-        <ion-item class="option" routerLink="/tabs/tab2">
+        <ion-item class="option" routerLink="reports/tabs/tab2">
           <ion-icon name="search"></ion-icon>Buscar reportes
         </ion-item>
-        <ion-item class="option" routerLink="/tabs/tab3">
+        <ion-item class="option" routerLink="reports/tabs/tab3">
           <ion-icon name="file-tray-full-outline"></ion-icon>Reportes apoyados
         </ion-item>
         <ion-item class="option" routerLink="/my-reports">
           <ion-icon name="folder-outline"></ion-icon>Mis reportes
         </ion-item>
-        <ion-item class="option" routerLink="/login">
-          <ion-icon name="log-in-outline"></ion-icon>Iniciar sesión
-        </ion-item>
+        <ion-menu-toggle>
+          <ion-item class="option" (click)="logOut()">
+            <ion-icon name="log-out-outline" ></ion-icon>Cerrar sesión
+          </ion-item>
+        </ion-menu-toggle>
       </ion-list>
     </ion-content>
   </ion-menu>

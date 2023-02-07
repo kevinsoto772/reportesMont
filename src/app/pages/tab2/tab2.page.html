@@ -15,17 +15,35 @@
   </ng-container>
 </ion-header>
 
-<ion-content class="tabsContent">
+<ion-content class="tabsContent animated fadeIn fast">
 <ion-list id="filter">
   <ion-item  lines="none">
     <ion-icon slot="start" name="filter-outline" color="dark"></ion-icon>
-    <ion-select placeholder="Filtrar">
-      <ion-select-option value="apples" >Todos los reportes</ion-select-option>
-      <ion-select-option value="oranges">Reportes cercanos</ion-select-option>
-      <ion-select-option value="bananas">Reportes populares</ion-select-option>
+    <ion-select placeholder="Filtrar"
+    (ionChange)="handleChange($event)">
+      <ion-select-option value="Todos los reportes" >Todos los reportes</ion-select-option>
+      <!-- <ion-select-option value="oranges">Reportes cercanos</ion-select-option> -->
+      <ion-select-option value="Reportes populares">Reportes populares</ion-select-option>
     </ion-select>
   </ion-item>
 </ion-list>
+
+<section *ngIf="reports.length == 0" id="message" class="animated fadeIn">
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12" id="col_image">
+        <ion-img src="../../../assets/logos/dosier.png" id="logo"></ion-img>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-label class="BlackLabel" *ngIf="this.selectedTypes == 1">Aún no se han reportado fallos en el sistema de alumbrado público</ion-label>
+        <ion-label class="BlackLabel" *ngIf="this.selectedTypes == 3">Aún no se han reportado fallos en el sistema de semaforización</ion-label>
+        <ion-label class="BlackLabel" *ngIf="this.selectedTypes == 2">Aún no se han realizado reportes por acumulación de basura</ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</section>
 
 <app-reports [reports]="reports"></app-reports>
 

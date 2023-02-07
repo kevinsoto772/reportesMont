@@ -8,29 +8,27 @@ ion-img {
     height: 50px;
 }
 
-.contenido {
+.container{
     text-align: center;
-    height:37px;
 }
-.contenido h3{
+
+.container h3{
     font-weight: bold;
 }
-#basura{
-    height:54px;
-    text-align: center;
-}
-
-#alumbrado{
-    height:54px;
-    text-align: center;
-}
-
 
 ion-card:active {
     transform: scale(0.98);
     box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
 }
 
+.titulo-reporte{
+    margin-top: 10px !important;
+    margin-bottom: 5px;
+}
+
+// ion-card.md.hydrated {
+//     height: 160px !important;
+// }
 
 @media (min-width: 1283px) {
 
@@ -41,83 +39,7 @@ ion-card:active {
         height: 100px;
     }
     ion-card{
-        height:220px !important;
         cursor: pointer;
-    }
-
-
-    
-    .container{
-        margin:0px auto;
-        display: block;
-        margin-left:50px;
-        
-            }
-
-}
-
-    @media (min-width: 390px) {
-
-        ion-card{
-            height:220px;
-        }
-
-        #basura{
-            height:58px;
-            text-align: center;
-        }
-
-        #alumbrado{
-            height:58px;
-            text-align: center;
-        }
-
-        #semaforo{
-            width:100%;
-        }
-        
-    .container{
-        margin:0px auto;
-        display: block;
-        margin-left:10px;
-        
-            }
-}
-
-@media (min-width: 412px) {
-
-    #basura{
-        height:58px;
-        text-align: center;
-    }
-
-    #alumbrado{
-        height:55px;
-        text-align: center;
-    }
-
-    .container{
-margin:0px auto;
-display: block;
-margin-left:20px;
-
-    }
-
-    #semaforo{
-        width:100%;
-    }
-}
-
-@media (min-width: 700px) {
-
-    .container{
-margin:0px auto;
-display: block;
-margin-left:50px;
-
-    }
-    #semaforo{
-        width:100%;
     }
 }
 
