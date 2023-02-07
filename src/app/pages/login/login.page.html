@@ -1,35 +1,35 @@
 <ion-header [translucent]="false" mode="ios">
     <ion-toolbar>
-        <ion-img src="../../../assets/logos/mobile-report.svg" class="img-fluid"></ion-img>
+       <ion-img src="../../assets/logos/LOGO APP.png" class="img-icon"></ion-img>
     </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-    <section class="container ion-padding" >
-        <form [formGroup]="this.form" class="form">
-            <div>
-                <ion-item class="inputs" id="input-user">
-                    <ion-label position="floating">Usuario</ion-label>
-                    <ion-input type="text" class="form-control" formControlName="user" required></ion-input>
-                </ion-item>
-            </div>
+<ion-content class="ion-padding" [fullscreen]="true">
+    <div class="img-container d-flex">
+        <ion-img src="../../assets/logos/proyecto.svg" class="img-fluid"></ion-img>
+    </div>
+    <ion-header collapse="condense" mode="ios" class="ion-no-border">
+        <ion-toolbar>
+            <ion-title size="large" class="title">Hola !</ion-title>
+        </ion-toolbar>
+    </ion-header>
 
-            <div>
-                <ion-item class="inputs">
-                    <ion-label position="floating">Contraseña</ion-label>
-                    <ion-input type="password" name="referencia" class="form-control" formControlName="password"
-                        required></ion-input>
-                </ion-item>
-            </div>
-            <ion-button color="orange" type="submit" (click)="login()"><span class="span-login">Iniciar
+    <div class="ion-padding">
+        <ion-label id="parrafo">Bienvenido a nuestra app de reportes SinúRep</ion-label>
+    </div>
+
+    <section class="register-container">
+        <div class="ion-padding">
+            <ion-button color="yellow" type="submit" (click)="login()"><span class="span-login">Iniciar
                     sesión</span></ion-button>
-        </form>
+        </div>
+
     </section>
 
     <section class="register-container">
-        <span>o</span>
         <div class="ion-padding">
-            <ion-button color="dark" type="submit" (click)="register()"><span class="span-login">Crear cuenta SinúRep</span></ion-button>
+            <ion-button color="orange" type="submit" (click)="register()"><span class="span-login">Crear cuenta
+                    SinúRep</span></ion-button>
         </div>
     </section>
 </ion-content>

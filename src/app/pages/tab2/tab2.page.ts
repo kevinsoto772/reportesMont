@@ -21,10 +21,22 @@ export class Tab2Page implements OnInit{
       this.selectedTypes = this.Types[0].id
       this.reportsService.getTopHeadlinesByTypes(this.selectedTypes).subscribe((reports: any) => {
         this.reports = [...this.reports, ...reports.reports];
-        console.log('entro al subscribe')
         }, (err: any) => console.log(err))
     });
 
+  }
+
+  handleChange(event) {
+    console.log(event.detail.value)
+    if (event.detail.value == 'Todos los reportes') {
+      this.reportsService.getTopHeadlinesByTypes(this.selectedTypes).subscribe((reports: any) => {
+        this.reports = reports.reports
+      })
+    } else if (event.detail.value == 'Reportes populares') {
+      this.reportsService.getReportsByFollowers(this.selectedTypes).subscribe((reports: any) => {
+        this.reports = reports.reports
+      })
+    }
   }
 
   segmentChanged(event: Event) {

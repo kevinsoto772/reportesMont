@@ -4,6 +4,13 @@
     overflow: hidden;
 }
 
+.toolbar-background:host{
+
+    --background: var(--ion-toolbar-background, var(--ion-background-color: #FDC868;));
+    
+}
+
+
 #types{
     font-weight: 100;
 }

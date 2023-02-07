@@ -19,10 +19,11 @@
 <ion-list id="filter">
   <ion-item  lines="none">
     <ion-icon slot="start" name="filter-outline" color="dark"></ion-icon>
-    <ion-select placeholder="Filtrar">
-      <ion-select-option value="apples" >Todos los reportes</ion-select-option>
-      <ion-select-option value="oranges">Reportes cercanos</ion-select-option>
-      <ion-select-option value="bananas">Reportes populares</ion-select-option>
+    <ion-select placeholder="Filtrar"
+    (ionChange)="handleChange($event)">
+      <ion-select-option value="Todos los reportes" >Todos los reportes</ion-select-option>
+      <!-- <ion-select-option value="oranges">Reportes cercanos</ion-select-option> -->
+      <ion-select-option value="Reportes populares">Reportes populares</ion-select-option>
     </ion-select>
   </ion-item>
 </ion-list>

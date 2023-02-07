@@ -1,11 +1,61 @@
 <ion-content *ngIf="report">
-  <ion-label class="titulo">
-    <h1>{{ Type }}</h1>
-  </ion-label>
+  <ion-header collapse="condense" mode="ios" class="ion-no-border">
+    <ion-toolbar>
+        <ion-title size="md" class="welcome header">Información del reporte.</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
-  <app-map [fathertab]="tabName" [position]="position" [type]="report.type"></app-map>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12" class="ion-padding">
+        <ion-label style="margin-right:10px; font-weight:bold;">
+          Tipo de reporte:
+        </ion-label>
+        <ion-label >
+          {{ Type }}
+        </ion-label>
+      </ion-col>
+    </ion-row>
 
-  <section>
+    <ion-row>
+      <ion-col size="12" class="ion-padding">
+        <ion-label style="margin-right:10px; font-weight:bold;">Dirección:</ion-label>
+        <ion-label>{{report.address}}</ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12" class="ion-padding">
+        <ion-label style="margin-right:10px; font-weight:bold;">Referencia:</ion-label>
+        <ion-label>{{report.reference}}</ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12" class="ion-padding">
+        <ion-label style="margin-right:10px; font-weight:bold;">
+          Descripción del reporte:
+        </ion-label>
+        <p>{{ report.description | slice:0:ocultar}}</p>
+        <span *ngIf="ocultar !== 5000 && report.description.length > 150">... </span>
+        <ion-label color="primary" (click)="ocultar = 5000"
+          *ngIf="ocultar !== 5000 && report.description?.length > 150">Leer más!</ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row >
+      <ion-col size="12" class="ion-padding">
+        <ion-label style="margin-right:10px; font-weight:bold;">Número de apoyos:</ion-label>
+        <ion-label>{{report.follows}}</ion-label>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+  <section >
+    <div class="ion-padding">
+      <label>Fotos:</label>
+    </div>
     <swiper [config]="slideOpt">
       <ng-template swiperSlide *ngFor="let image of image_array">
         <ion-card>
@@ -15,63 +65,24 @@
     </swiper>
   </section>
 
-  <ion-grid fixed>
-    <ion-row>
-      <ion-col size="12">
-        <ion-label color="primary">Dirección</ion-label>
-        <ion-item>
-          <ion-icon name="location" color="primary"></ion-icon>
-          <ion-note slot="end" color="primary">{{ report.address }}</ion-note>
-        </ion-item><br>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col size="12">
-        <ion-label color="primary">Referencia</ion-label>
-        <ion-item>
-          <ion-icon name="clipboard" color="primary"></ion-icon>
-          <ion-note slot="end" color="primary">{{report.reference}}</ion-note>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
-  <ion-grid fixed>
-    <ion-row>
-      <ion-col size="12">
-        <p>{{ report.description | slice:0:ocultar}}</p>
-        <span *ngIf="ocultar !== 5000 && report.description.length > 150">... </span>
-        <ion-label color="primary" (click)="ocultar = 5000"
-          *ngIf="ocultar !== 5000 && report.description?.length > 150">Leer más!</ion-label>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col size="12">
-        <ion-item id="item">
-          <ion-label>Apoyos:</ion-label>
-          <ion-badge slot="end">442</ion-badge>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
-
+  <div class="ion-padding">
+    <label>Referencia en el mapa:</label>
+  </div><br>
+  <app-map [fathertab]="tabName" [position]="position" [type]="report.type"></app-map>
 </ion-content>
 
-<ion-footer>
+<ion-footer class="header">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button (click)="back()">
-        <ion-icon slot="start" name="arrow-undo-circle-outline" color="primary"></ion-icon>
+        <ion-icon slot="start" name="arrow-undo-circle-outline" color="dark"></ion-icon>
         <ion-label>Regresar</ion-label>
       </ion-button>
     </ion-buttons>
 
     <ion-buttons slot="end">
       <ion-button (click)="support()">
-        <ion-icon slot="end" [name]="push" color="primary"></ion-icon>
+        <ion-icon slot="end" [name]="push" color="dark"></ion-icon>
         <ion-label>Apoyar</ion-label>
       </ion-button>
     </ion-buttons>

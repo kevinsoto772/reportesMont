@@ -1,0 +1,57 @@
+.toolbar-container {
+    box-shadow: none !important;
+}
+
+ion-content{
+    --background:var(--background-color, #F1EEE7)
+}
+
+ion-header {
+    --background:var(--background-color, #F1EEE7)
+    }
+
+.header-collapse-condense ion-toolbar {
+    --background: var(--ion-toolbar-background, #F1EEE7);
+}
+
+.input-container{
+    box-shadow: 0px 0px 5px #ccc;
+    margin-bottom: 15px;
+}
+
+#parrafo {
+    text-align:left; 
+    font-family:'Montserrat';
+}
+
+.welcome{
+    text-align:left; 
+    font-family:'Montserrat';
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.span-login{
+    color: #1d1d1d;
+    text-transform:initial;
+}
+
+.span-register{
+    color: #ffffff;
+    text-transform:initial;
+}
+
+.register-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.img-fluid{
+    width: fit-content;
+}

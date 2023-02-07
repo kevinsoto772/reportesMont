@@ -2,12 +2,7 @@
   <ion-menu side="start" menuId="first" contentId="main" swipeGesture="false">
     <ion-content>
       <div class="menu-header-bg"></div>
-      <div class="header-content">
-        <img src="../assets/logos/usuario.png">
-        <ion-label>
-          <h2>{{this.name}}</h2>
-        </ion-label>
-      </div>
+      <app-menu></app-menu>
       <ion-list lines="none" class="menu-items">
         <ion-item class="option active" routerLink="reports/tabs/tab1">
           <ion-icon name="document-text-outline"></ion-icon>Reportar

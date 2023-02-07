@@ -4,7 +4,7 @@ import { Preferences } from '@capacitor/preferences';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ReportsService } from '../../../services/reports.service';
 import { PhotoService } from 'src/app/services/photo.service';
-
+import { Storage } from '@ionic/storage-angular';
 @Component({
   selector: 'app-form-part2',
   templateUrl: './form-part2.component.html',
@@ -13,7 +13,8 @@ import { PhotoService } from 'src/app/services/photo.service';
 export class FormPart2Component implements OnInit {
   @Input() form;
   public form_detail: FormGroup
-  constructor(private modalCtrl: ModalController, private reportService: ReportsService, private alertCtrl: AlertController, private toastCtrl: ToastController, public photoservice: PhotoService) { 
+  public readonly keyUserLocalStorage = 'user'
+  constructor(private modalCtrl: ModalController, private reportService: ReportsService, private alertCtrl: AlertController, private toastCtrl: ToastController, public photoservice: PhotoService, private storage: Storage) { 
     this.form_detail = new FormGroup({
       email: new FormControl('', [Validators.required],  ),
       description: new FormControl('', [Validators.required]),
@@ -22,9 +23,23 @@ export class FormPart2Component implements OnInit {
   }
 
   ngOnInit() { 
-    console.log(this.form_detail)
+    this.getLocalInformation()
     
   }
+
+  public async getLocalInformation() {
+    try {
+      if (await this.storage.get(this.keyUserLocalStorage)) {
+        const userString = await this.storage.get(this.keyUserLocalStorage)
+        const user = JSON.parse(userString)
+        this.form_detail.controls['email'].setValue(user.email);
+        this.form_detail.controls['user_document'].setValue(user.document);
+      }
+      
+    } catch (error) {
+        }
+  }
+
   
   cerrar() {
     this.modalCtrl.dismiss();

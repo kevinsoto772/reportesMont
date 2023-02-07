@@ -1,7 +1,9 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 import { Report } from '../interfaces/interfaces';
+import { ReportsService } from './reports.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,7 @@ export class StorageService {
   private _storage: Storage | null = null;
   private _localReports: Report[] = [];
 
-  constructor(private storage: Storage, private toastCtrl: ToastController) { 
+  constructor(private storage: Storage, private toastCtrl: ToastController, private reportsService: ReportsService) { 
     this.init();
   }
 
@@ -42,10 +44,20 @@ export class StorageService {
     if (exists) {
       this._localReports = this._localReports.filter(localReport => localReport.id !== report.id);
       mensaje = 'Removido de apoyados'
+      this.reportsService.unfollowReport(report.id).subscribe((res) => {
+        console.log(res)
+      }, (err: HttpErrorResponse) => {
+        console.log(err)
+      })
     } else {
       this._localReports = [report, ...this._localReports];
+      this.reportsService.followReport(report.id).subscribe((res) => {
+        console.log(res)
+      }, (err: HttpErrorResponse) => {
+        console.log(err)
+      })
       mensaje = 'Agregado a apoyados'
-    }    
+    }
 
     this.presentToast(mensaje);
     this._storage.set('reports', this._localReports);

@@ -125,6 +125,7 @@ export class MapService {
       map: this.map,
       title: this.label.titulo,
       draggable: false,
+      icon: "../../assets/logos/ubicación 3.png",
       animation: google.maps.Animation.DROP
     })
 
@@ -176,12 +177,12 @@ export class MapService {
       });
     }
     
-    markers.addListener("click", () => {
-      this.infowindow.open({
-        anchor: markers,
-        map: this.map,
-      });
-    });
+    // markers.addListener("click", () => {
+    //   this.infowindow.open({
+    //     anchor: markers,
+    //     map: this.map,
+    //   });
+    // });
 
     return markers;
   }

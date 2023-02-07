@@ -1,0 +1,41 @@
+<ion-header [translucent]="false" mode="ios">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)="close()" color="primary">
+                <ion-icon slot="start" name="arrow-back-outline" color="dark"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" [fullscreen]="true">
+    <ion-header collapse="condense" mode="ios" class="ion-no-border">
+        <ion-toolbar>
+            <ion-title size="large" class="welcome">Bienvenido!</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <div class="ion-padding">
+        <ion-label id="parrafo">Inicia sesión para continuar</ion-label>
+    </div>
+
+    <section class="container ion-padding">
+        <form [formGroup]="this.form" class="form">
+            <div class="input-container">
+                <ion-item class="inputs" id="input-user">
+                    <ion-label position="floating">Usuario</ion-label>
+                    <ion-input type="text" class="form-control" formControlName="user" required></ion-input>
+                </ion-item>
+            </div>
+
+            <div class="input-container">
+                <ion-item class="inputs">
+                    <ion-label position="floating">Contraseña</ion-label>
+                    <ion-input type="password" name="referencia" class="form-control" formControlName="password"
+                        required></ion-input>
+                </ion-item>
+            </div>
+            <ion-button color="yellow" type="submit" (click)="login()"><span class="span-login">Iniciar
+                    sesión</span></ion-button>
+        </form>
+    </section>
+</ion-content>

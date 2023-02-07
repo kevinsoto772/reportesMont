@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Storage } from '@ionic/storage-angular';
+import { createNewUser } from '../interfaces/createNewUser';
+import { Preferences } from '@capacitor/preferences';
 
 const apiURL = environment.apiURL;
 @Injectable({
@@ -27,7 +29,7 @@ export class AutenticationService {
     return this.http.post<any>(`${apiURL}${endpoint}`, {user: user, password: password}, {headers: this.headers})
   }
 
-  register(newUser: any): Observable<any>{
+  register(newUser: createNewUser): Observable<any>{
     const endpoint = `/users/register`
     return this.http.post<any>(`${apiURL}${endpoint}`, newUser, {headers: this.headers})
   }
@@ -37,10 +39,10 @@ export class AutenticationService {
     this._storage.remove(this.keyTokenLocalStorage)
   }
 
-  public saveLoginInformation(jwt:string, Usuario: object):void{
+  public saveLoginInformation(jwt:string, user: object):void{
     console.log('Guardando Información de inicio de sesión')
     console.log('Nuevo token', jwt)
-    this._storage.set(this.keyUserLocalStorage, JSON.stringify(Usuario));
+    this._storage.set(this.keyUserLocalStorage, JSON.stringify(user));
     this._storage.set(this.keyTokenLocalStorage, jwt);
   }
 
@@ -48,4 +50,5 @@ export class AutenticationService {
     const storage = await this.storage.create();
     this._storage = storage;
   }
+
 }

@@ -13,6 +13,8 @@ import { DetailsComponent } from './tab2/details/details.component';
 
 import { SwiperModule } from 'swiper/angular';
 import { RegisterComponent } from './login/register/register.component';
+import { LoginModalComponent } from './login/login-modal/login-modal.component';
+import { MenuComponent } from './menu/menu.component';
 
 
 
@@ -22,11 +24,11 @@ import { RegisterComponent } from './login/register/register.component';
   declarations: [DetailComponent,
     CardsComponent,
     MapComponent, FormPart2Component, ReportComponent, ReportsComponent,
-    DetailsComponent, RegisterComponent],
+    DetailsComponent, RegisterComponent, LoginModalComponent, MenuComponent],
   exports: [DetailComponent,
     CardsComponent,
     MapComponent, FormPart2Component,
-    ReportComponent, ReportsComponent, DetailsComponent, RegisterComponent
+    ReportComponent, ReportsComponent, DetailsComponent, RegisterComponent, LoginModalComponent,MenuComponent
   ],
   imports: [
     CommonModule,
